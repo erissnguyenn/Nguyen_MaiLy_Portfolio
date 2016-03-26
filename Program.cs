@@ -72,11 +72,16 @@ namespace NguyenMaiLy_Assignment05
 					Console.WriteLine ("                       Exercise 2: Backwards                       ");
 					Console.WriteLine ("===================================================================");
 
+					// Prompt user for sentence
 					Console.WriteLine ("Please enter a sentence that has at least SIX words in it: ");
+					// Get input for sentence
 					string sentence_Str = Console.ReadLine ();
 
-					Console.WriteLine ("The sentence you entered: " + sentence_Str);
+					// Call function Backwards()
+					Backwards (sentence_Str);
+					
 					break;
+
 				} else if (response == "C" || response == "c") {
 					Console.WriteLine ("===================================================================");
 					Console.WriteLine ("                       Exercise 3: AgeConvert                      ");
@@ -99,7 +104,7 @@ namespace NguyenMaiLy_Assignment05
 
 		// FUNCTIONS ---------------------------------------------------------------------------------
 
-		// Exercise 1: SwapName
+		// Exercise 1: SwapName ----------------------------------------------------------------------
 		public static string SwapName(string firstName, string lastName){
 
 			Console.WriteLine ("\r\nYour FIRST and LAST name: " + firstName + " " + lastName);
@@ -109,7 +114,47 @@ namespace NguyenMaiLy_Assignment05
 			return null;
 		}
 
-		// Exercise 2: Backwards
+		// Exercise 2: Backwards ---------------------------------------------------------------------
+		public static string Backwards(string sentence){
 
+			// Create array and split sentence according to each space between each word
+			string[] array = sentence.Split (' ');
+
+			// Testing number of words in sentenced typed:
+			// Console.Write (array.Length);
+
+			// Loop error message until user enters a minimum of 6 words in their sentence
+			while (true) {
+				if (array.Length >= 6) {
+					// Output each word in the sentence as an array
+					Console.WriteLine ("\r\nThe sentence you entered: ");
+					foreach (string word in array) {
+						Console.Write (word + " ");
+					}
+
+					// Reverse the order of each word in the sentence by reversing the array
+					Array.Reverse (array);
+					// Output each word in the sentence as an array in REVERSE
+					Console.WriteLine ("\r\n\r\nThe sentence you entered in REVERSE: ");
+					foreach (string word in array) {
+						// Remove any punctuations in reversed output
+						Console.Write (word.Trim ('.').Trim ('!').Trim ('?') + " ");
+					}
+					break;
+
+				} else {
+					// Error message when user enters less than 6 words
+					// Reprompt user for minimum 6 word sentence
+					Console.WriteLine ("\r\n!! ERROR !! INVALID ENTRY !! \r\n--> Please enter a minimum of SIX words in your sentence:");
+					sentence = Console.ReadLine();
+					array = sentence.Split (' ');
+					// Console.WriteLine (array.Length);
+				}
+			}
+
+			return null;
+		}
+
+		// Exercise 3: AgeConvert ---------------------------------------------------------------------
 	}
 }
