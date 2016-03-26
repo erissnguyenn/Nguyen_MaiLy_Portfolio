@@ -24,7 +24,7 @@ namespace NguyenMaiLy_Assignment05
 			Console.WriteLine ("  B. Backwards");
 			Console.WriteLine ("  C. AgeConvert");
 			Console.WriteLine ("  D. TempConvert");
-			Console.Write ("Please enter only A, B, C, or D: ");
+			Console.Write ("\r\nPlease enter only A, B, C, or D: ");
 			string response = Console.ReadLine ();
 			// Check to see if user entered anything;
 			// If user leave blank, output error message and prompt again.
@@ -86,7 +86,42 @@ namespace NguyenMaiLy_Assignment05
 					Console.WriteLine ("===================================================================");
 					Console.WriteLine ("                       Exercise 3: AgeConvert                      ");
 					Console.WriteLine ("===================================================================");
+
+					// Prompt user for name
+					Console.Write ("Please enter in your NAME: ");
+					// Get input for name
+					string name_Str = Console.ReadLine ();
+					// Check to see if user entered anything;
+					// If user leave blank, output error message and prompt again.
+					while (string.IsNullOrWhiteSpace (name_Str)) {
+						Console.Write ("\r\n!! ERROR !! PLEASE DO NOT LEAVE THIS PART BLANK !!\r\n--> Please enter in your NAME: ");
+						name_Str = Console.ReadLine ();
+					}
+
+					// Prompt user for age
+					Console.Write ("\r\nPlease enter in your AGE: ");
+					// Get input for age
+					string age_Str = Console.ReadLine ();
+					// Check to see if user entered anything;
+					// If user leave blank, output error message and prompt again.
+					while (string.IsNullOrWhiteSpace (age_Str)) {
+						Console.Write ("\r\n!! ERROR !! PLEASE DO NOT LEAVE THIS PART BLANK !!\r\n--> Please enter in your AGE: ");
+						age_Str = Console.ReadLine ();
+					}
+					// Check to see if input is a number, if not try again.
+					int age = 0;
+
+					while(!int.TryParse(age_Str, out age)){
+						// Prompt user invalid entry and reprompt them for their age 
+						Console.Write ("\r\n!! ERROR !! INVALID ENTRY !!\r\n--> Please enter your age: ");
+						age_Str = Console.ReadLine();
+					}
+
+					// Call function AgeConvert()
+					AgeConvert(name_Str, age);
+
 					break;
+
 				} else if (response == "D" || response == "d") {
 					Console.WriteLine ("===================================================================");
 					Console.WriteLine ("                       Exercise 4: TempConvert                     ");
@@ -156,5 +191,31 @@ namespace NguyenMaiLy_Assignment05
 		}
 
 		// Exercise 3: AgeConvert ---------------------------------------------------------------------
+		public static string AgeConvert (string name, int age){
+			
+			// Display user's name and age
+			Console.WriteLine ("\r\n" + name + " is " + age + " years old.");
+
+			// Calculate and display number of DAYS alive
+			int daysAlive = 365 * age;
+			Console.WriteLine ("\r\n" + name + " has been alive for " + daysAlive + " days.");
+
+			// Calculate and display number of HOURS alive
+			int hoursAlive = 8760 * age;
+			Console.WriteLine (name + " has been alive for " + hoursAlive + " hours.");
+
+			// Calculate and display number of MINUTES alive
+			int minutesAlive = 525600 * age;
+			Console.WriteLine (name + " has been alive for " + minutesAlive + " minutes.");
+
+			// Calculate and display number of SECONDS alive
+			int secondsAlive = 31536000 * age;
+			Console.WriteLine (name + " has been alive for " + secondsAlive + " seconds.");
+
+			return null;
+		}
+
+		// Exercise 4: TempConvert --------------------------------------------------------------------
+
 	}
 }
