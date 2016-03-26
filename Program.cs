@@ -126,7 +126,51 @@ namespace NguyenMaiLy_Assignment05
 					Console.WriteLine ("===================================================================");
 					Console.WriteLine ("                       Exercise 4: TempConvert                     ");
 					Console.WriteLine ("===================================================================");
+
+					// Prompt user for temperature in Fahrenheit
+					Console.Write ("Please enter in the temperature NUMBER in FAHRENHEIT: ");
+					// Get input for temperature in Fahrenheit
+					string fahrenheit_Str = Console.ReadLine ();
+					// Check to see if user entered anything;
+					// If user leave blank, output error message and prompt again.
+					while (string.IsNullOrWhiteSpace (fahrenheit_Str)) {
+						Console.Write ("\r\n!! ERROR !! PLEASE DO NOT LEAVE THIS PART BLANK !!\r\n--> Please enter in the temperature NUMBER in FAHRENHEIT: ");
+						fahrenheit_Str = Console.ReadLine ();
+					}
+					// Check to see if input is a number, if not try again.
+					double fahrenheit = 0;
+
+					while(!double.TryParse(fahrenheit_Str, out fahrenheit)){
+						// Prompt user invalid entry and reprompt them for the number in Fahrenheit
+						Console.Write ("\r\n!! ERROR !! INVALID ENTRY !!\r\n--> Please enter in the temperature number in FAHRENHEIT: ");
+						fahrenheit_Str = Console.ReadLine();
+					}
+
+
+					// Prompt user for temperature in Celsius
+					Console.Write ("Please enter in the temperature NUMBER in CELSIUS: ");
+					// Get input for temperature in Celsius
+					string celsius_Str = Console.ReadLine ();
+					// Check to see if user entered anything;
+					// If user leave blank, output error message and prompt again.
+					while (string.IsNullOrWhiteSpace (celsius_Str)) {
+						Console.Write ("\r\n!! ERROR !! PLEASE DO NOT LEAVE THIS PART BLANK !!\r\n--> Please enter in the temperature NUMBER in CELSIUS: ");
+						celsius_Str = Console.ReadLine ();
+					}
+					// Check to see if input is a number, if not try again.
+					double celsius = 0;
+
+					while(!double.TryParse(celsius_Str, out celsius)){
+						// Prompt user invalid entry and reprompt them for the number in Celsius
+						Console.Write ("\r\n!! ERROR !! INVALID ENTRY !!\r\n--> Please enter in the temperature number in CELSIUS: ");
+						celsius_Str = Console.ReadLine();
+					}
+
+					// Call function TempConvert();
+					TempConvert(fahrenheit, celsius);
+
 					break;
+
 				} else {
 					Console.Write ("\r\n!! ERROR !! INVALID ENTRY !!\r\n--> Please enter in your response using only A, B, C or D: ");
 					response = Console.ReadLine ();
@@ -216,6 +260,23 @@ namespace NguyenMaiLy_Assignment05
 		}
 
 		// Exercise 4: TempConvert --------------------------------------------------------------------
+		public static string TempConvert(double fahrenheit, double celsius){
+			
+			// Display the temperature the user entered in Fahrenheit
+			Console.WriteLine ("\r\nYou entered " + fahrenheit + "°" + " Fahrenheit");
+			// Calculate Fahrenheit to Celsius
+			double celsiusValue = (fahrenheit - 32) * 5 / 9;
+			// Display Fahrenheit to Celsius calculation results
+			Console.WriteLine (fahrenheit + "° Fahrenheit --> " + Math.Round(celsiusValue, 2) + "° Celsius");
 
+			// Display the temperature the user entered in Celsius
+			Console.WriteLine ("\r\nYou entered " + celsius + "°" + " Celsius");
+			// Calculate Celsius to Fahrenheit
+			double fahrenheitValue = celsius * 9/5 + 32;
+			// Display Celsius to Fahrenheit calculation results
+			Console.WriteLine (celsius + "° Celsius --> " + Math.Round(fahrenheitValue, 2) + "° Fahrenheit");
+
+			return null;
+		}
 	}
 }
